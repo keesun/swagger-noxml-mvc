@@ -1,0 +1,6 @@
+web/WEB-INF/classes/
+web/WEB-INF/lib/
+target/
+*.iml
+*.ipr
+*.iws

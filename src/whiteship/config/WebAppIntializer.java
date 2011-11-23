@@ -13,27 +13,14 @@ public class WebAppIntializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext context) throws ServletException {
-//        AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
-//        applicationContext.register(AppConfig.class);
-//        applicationContext.refresh();
-//
-//        AnnotationConfigWebApplicationContext dispatcherServeltContext = new AnnotationConfigWebApplicationContext();
-//        dispatcherServeltContext.setParent(applicationContext);
-//        dispatcherServeltContext.register(WebConfig.class);
-//        dispatcherServeltContext.refresh();
-//
-//        ServletRegistration.Dynamic dispatcher = context.addServlet("spring", new DispatcherServlet(dispatcherServeltContext));
-//        dispatcher.setLoadOnStartup(1);
-//        dispatcher.addMapping("/");
-
-        context.setInitParameter("contextConfigLocation", "whiteship");
+        context.setInitParameter("contextConfigLocation", "whiteship.config.AppConfig");
 
 		AnnotationConfigWebApplicationContext contextLoaderContext = new AnnotationConfigWebApplicationContext();
 		context.addListener(new ContextLoaderListener(contextLoaderContext));
 
 		AnnotationConfigWebApplicationContext dispatcherServletContext = new AnnotationConfigWebApplicationContext();
-		dispatcherServletContext.setConfigLocation("");
-		ServletRegistration.Dynamic dispatcher = context.addServlet("appServlet", new DispatcherServlet(dispatcherServletContext));
+		dispatcherServletContext.register(WebConfig.class);
+		ServletRegistration.Dynamic dispatcher = context.addServlet("spring", new DispatcherServlet(dispatcherServletContext));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
     }
