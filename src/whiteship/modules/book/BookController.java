@@ -12,8 +12,8 @@ public class BookController {
 
     @RequestMapping("/")
     public String addForm(Model model) {
-        model.addAttribute("book", service.getAll());
-        return "bookForm";
+        model.addAttribute("books", service.getAll());
+        return "/book";
     }
 
 
