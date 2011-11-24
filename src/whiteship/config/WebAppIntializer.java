@@ -13,13 +13,9 @@ public class WebAppIntializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext context) throws ServletException {
-        context.setInitParameter("contextConfigLocation", "whiteship.config.AppConfig");
-
-		AnnotationConfigWebApplicationContext contextLoaderContext = new AnnotationConfigWebApplicationContext();
-		context.addListener(new ContextLoaderListener(contextLoaderContext));
-
 		AnnotationConfigWebApplicationContext dispatcherServletContext = new AnnotationConfigWebApplicationContext();
-		dispatcherServletContext.register(WebConfig.class);
+		dispatcherServletContext.register(AppConfig.class, WebConfig.class);
+
 		ServletRegistration.Dynamic dispatcher = context.addServlet("spring", new DispatcherServlet(dispatcherServletContext));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");

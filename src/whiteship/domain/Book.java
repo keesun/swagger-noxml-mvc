@@ -7,6 +7,14 @@ public class Book {
     String title;
     String content;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getIsbn() {
         return isbn;
     }
