@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@Configuration
+//@Configuration
 @ComponentScan(basePackages = "whiteship",
         useDefaultFilters = false,
         includeFilters = @ComponentScan.Filter(Controller.class))
@@ -21,7 +21,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/static");
     }
 
     @Bean
