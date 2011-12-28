@@ -13,43 +13,45 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * @author: keesunbaik
+ * @author keesunbaik
  */
 
-//@Repository
-public interface BookJpaRepository extends JpaRepository<Book, Integer> {
+@Repository
+public class BookJpaRepository {
 
-//    @PersistenceContext EntityManager entityManager;
-//
-//    public List<Book> getAll(){
-//        return entityManager.createQuery("select book from Book book", Book.class).getResultList();
-//    }
-//
-//
-//    public void add(Book book) {
-//        entityManager.persist(book);
-//    }
-//
-//    public Book findById(int id){
-//        return entityManager.find(Book.class, id);
-//    }
-//
-//    public List<Book> find(int page, int size) {
-//        TypedQuery<Book> bookTypedQuery = entityManager.createQuery("select book from Book book", Book.class);
-//        bookTypedQuery.setFirstResult(page*size);
-//        bookTypedQuery.setMaxResults(size);
-//        return bookTypedQuery.getResultList();
-//    }
-//
-//    public List<Book> findByTitle(String title, int page, int size) {
-//        TypedQuery<Book> bookTypedQuery = entityManager.createQuery("select book from Book book where book.title = ?1", Book.class);
-//        bookTypedQuery.setParameter(1, title);
-//        bookTypedQuery.setFirstResult(page * size);
-//        bookTypedQuery.setMaxResults(size);
-//        return bookTypedQuery.getResultList();
-//    }
+    @PersistenceContext EntityManager entityManager;
 
-    Book findByTitle(String keesun);
+    public List<Book> findAll(){
+        return entityManager.createQuery("select book from Book book", Book.class).getResultList();
+    }
 
-    Book find(Book exampleBook);
+    public void save(Book book) {
+        entityManager.persist(book);
+    }
+
+    public Book findById(int id){
+        return entityManager.find(Book.class, id);
+    }
+
+    public List<Book> find(int page, int size) {
+        TypedQuery<Book> bookTypedQuery = entityManager.createQuery("select book from Book book", Book.class);
+        bookTypedQuery.setFirstResult(page*size);
+        bookTypedQuery.setMaxResults(size);
+        return bookTypedQuery.getResultList();
+    }
+
+    public Book findByTitle(String title){
+        TypedQuery<Book> bookTypedQuery = entityManager.createQuery("select book from Book book where book.title = ?1", Book.class);
+        bookTypedQuery.setParameter(1, title);
+        return bookTypedQuery.getSingleResult();
+    }
+
+    public List<Book> findByTitle(String title, int page, int size) {
+        TypedQuery<Book> bookTypedQuery = entityManager.createQuery("select book from Book book where book.title = ?1", Book.class);
+        bookTypedQuery.setParameter(1, title);
+        bookTypedQuery.setFirstResult(page * size);
+        bookTypedQuery.setMaxResults(size);
+        return bookTypedQuery.getResultList();
+    }
+
 }

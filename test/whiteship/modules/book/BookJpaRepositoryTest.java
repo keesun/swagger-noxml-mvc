@@ -43,11 +43,6 @@ public class BookJpaRepositoryTest {
         Book myBook = repository.findByTitle("Keesun");
         assertThat(myBook, is(notNullValue()));
 
-        Book exampleBook = new Book();
-        exampleBook.setTitle("Keesun");
-        Book myNewBook = repository.find(exampleBook);
-        assertThat(myNewBook, is(notNullValue()));
-
     }
 
 }
